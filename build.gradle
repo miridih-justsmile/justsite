@@ -38,5 +38,11 @@ dependencies {
 
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    /**
+     * 임시로 내장 톰캣 서블릿 jsp방식 구현.
+     * 나중에 삭제 쌉가능.
+     */
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
 }
 

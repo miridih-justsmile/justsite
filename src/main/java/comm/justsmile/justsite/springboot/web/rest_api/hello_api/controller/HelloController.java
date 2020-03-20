@@ -1,6 +1,6 @@
-package comm.justsmile.justsite.springboot.web.controller;
+package comm.justsmile.justsite.springboot.web.rest_api.hello_api.controller;
 
-import comm.justsmile.justsite.springboot.web.domain.HelloDto;
+import comm.justsmile.justsite.springboot.web.rest_api.hello_api.domain.HelloDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
