@@ -27,6 +27,8 @@ repositories {
 }
 
 dependencies {
+    compile('org.springframework.boot:spring-boot-devtools')
+
     /**
      * JDK 11을 사용하는 경우, intellij plugin의 lombok을 사용하면 에러발생.
      * compileOnly와 annotationProcessor를 직접 지정해주어 사용해야 한다.
@@ -39,10 +41,6 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    /**
-     * 임시로 내장 톰캣 서블릿 jsp방식 구현.
-     * 나중에 삭제 쌉가능.
-     */
-    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    compile('org.springframework.boot:spring-boot-starter-mustache')
 }
 
