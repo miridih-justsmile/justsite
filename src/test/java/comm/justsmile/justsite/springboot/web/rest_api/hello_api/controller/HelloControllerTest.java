@@ -1,5 +1,6 @@
 package comm.justsmile.justsite.springboot.web.rest_api.hello_api.controller;
 
+import comm.justsmile.justsite.springboot.web.rest_api.hello_api.HelloController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

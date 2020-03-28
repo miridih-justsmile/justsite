@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.slack_api.controller;
+package comm.justsmile.justsite.springboot.web.rest_api.slack_api;
 
 import org.springframework.web.bind.annotation.*;
 

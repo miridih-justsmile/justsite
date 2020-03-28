@@ -1,6 +1,6 @@
 package comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto;
 
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.posts.Posts;
+import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.Posts;
 import lombok.Getter;
 
 @Getter

@@ -1,6 +1,6 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.posts;
+package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain;
 
-import org.assertj.core.api.Assertions;
+import comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository.PostsRepository;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

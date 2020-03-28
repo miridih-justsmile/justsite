@@ -20,4 +20,12 @@ public abstract class BaseTimeEntity {
     @LastModifiedDate
     private LocalDateTime modifiedDate;
 
+
+    public void adas(){
+        get();
+    }
+
+    protected void get() {
+        
+    }
 }

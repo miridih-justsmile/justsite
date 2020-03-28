@@ -1,5 +1,6 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.posts;
+package comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository;
 
+import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.Posts;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

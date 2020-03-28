@@ -1,7 +1,7 @@
 package comm.justsmile.justsite.springboot.web.rest_api.crud_api.service;
 
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.posts.Posts;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.posts.PostsRepository;
+import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.Posts;
+import comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository.PostsRepository;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsListResponseDto;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsResponseDto;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsSaveRequestDto;
