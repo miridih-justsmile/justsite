@@ -1,15 +1,5 @@
 --- #구분
 spring:
-  jpa:
-    show-sql: true
-    hibernate:
-      naming:
-        strategy: org.hibernate.dialect.MySQL5InnoDBDialect
-
-  h2:
-    console:
-      enabled: true
-
   mustache:
     suffix: .html
 
@@ -24,6 +14,16 @@ spring:
 --- #구분
 spring:
   profiles: local
+
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        strategy: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  h2:
+    console:
+      enabled: true
 
   resources:
     static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static
