@@ -1,5 +1,4 @@
 namespace SlackAPIModule {
-
     export function sendMsg(msg : string) {
         SlackAPI.sendMsg(msg)
     }

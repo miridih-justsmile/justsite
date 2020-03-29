@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping(SlackController.REF_PATH)
-public class SlackController extends DefaultController{
+@RequestMapping(CRUDController.REF_PATH)
+public class CRUDController extends DefaultController{
 
-    static final String REF_PATH = "/slack";
+    static final String REF_PATH = "/crud";
 
-    public SlackController() {
+    public CRUDController() {
         super.refPath = REF_PATH;
     }
 }
