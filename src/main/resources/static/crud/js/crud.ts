@@ -11,6 +11,7 @@ namespace Main {
         $('#btn-save').on('click', _=>{
             save();
         });
+        // console.log('hi');
         console.log('init 완료');
     }
     function save() {

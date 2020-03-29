@@ -5,6 +5,7 @@ var Main;
         $('#btn-save').on('click', function (_) {
             save();
         });
+        console.log('hi');
         console.log('init 완료');
     }
     Main.init = init;

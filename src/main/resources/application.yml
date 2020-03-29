@@ -1,3 +1,4 @@
+--- #구분
 spring:
   jpa:
     show-sql: true
@@ -12,9 +13,17 @@ spring:
   mustache:
     suffix: .html
 
+
 #  devtools:
 #    livereload:
 #      enabled: true
 #
 #  freemarker:
 #    cache: false
+
+--- #구분
+spring:
+  profiles: local
+
+  resources:
+    static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static
