@@ -4,8 +4,17 @@ spring:
     hibernate:
       naming:
         strategy: org.hibernate.dialect.MySQL5InnoDBDialect
+
   h2:
     console:
       enabled: true
+
   mustache:
     suffix: .html
+
+#  devtools:
+#    livereload:
+#      enabled: true
+#
+#  freemarker:
+#    cache: false
