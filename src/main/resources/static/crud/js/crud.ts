@@ -26,7 +26,7 @@ namespace Main {
             dataType: 'json',
             contentType: 'application/json',
             scriptCharset: 'utf-8',
-            data: ajaxData.reqData? JSON.stringify(ajaxData.reqData) : undefined
+            data: ajaxData.reqData ? JSON.stringify(ajaxData.reqData) : undefined
         }).done(_ => {
             if (!!ajaxData.callback) {
                 ajaxData.callback();

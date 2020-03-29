@@ -15,6 +15,7 @@ public class CRUDController extends DefaultController {
 
     static final String REF_PATH = "/crud";
     private final PostsService postsService;
+
     public CRUDController(PostsService postsService) {
         super.refPath = REF_PATH;
         this.postsService = postsService;
