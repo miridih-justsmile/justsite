@@ -1,16 +1,5 @@
 /// <reference path="../../../typings/index.d.ts"/>
-
-interface AjaxData {
-    type: string;
-    url: string;
-    reqData?: {
-        title: string;
-        author?: string;
-        content: string;
-    };
-    callback?: Function;
-}
-
+/// <reference path="crud.d.ts" />
 namespace Main {
     export function init() {
         $('#btn-save').on('click', save);

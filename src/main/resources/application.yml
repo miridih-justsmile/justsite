@@ -4,26 +4,24 @@ spring:
     suffix: .html
 
 
-#  devtools:
-#    livereload:
-#      enabled: true
-#
-#  freemarker:
-#    cache: false
-
 --- #구분
 spring:
-  profiles: local
+  profiles:
+    active: local
+    include: oauth
 
   jpa:
     show-sql: true
-    hibernate:
-      naming:
-        strategy: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   h2:
     console:
       enabled: true
+
+  mustache:
+    prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates
+    cache: false
 
   resources:
     static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static

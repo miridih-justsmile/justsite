@@ -1,4 +1,5 @@
 /// <reference path="../../../typings/index.d.ts"/>
+/// <reference path="crud.d.ts" />
 var Main;
 (function (Main) {
     function init() {

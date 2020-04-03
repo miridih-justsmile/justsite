@@ -19,5 +19,4 @@ public class SlackController extends DefaultController {
     public String index() {
         return resultPath("/index");
     }
-
 }

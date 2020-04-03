@@ -1,17 +1,17 @@
-{{>crud/layout/header}}
+{{>/crud/layout/header}}
 <h1>스프링부트로 시작하는 웹 서비스 Ver.2</h1>
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
             <a href="/crud/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#userName}}
-            Logged in as: <span id="user">{{userName}}</span>
+            {{#loginUserName}}
+            <span>아이디 : </span><span id="user">{{loginUserName}}</span>
             <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
+            {{/loginUserName}}
+            {{^loginUserName}}
             <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
             <a href="/oauth2/aut/static/crud/js/crud.jshorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
+            {{/loginUserName}}
         </div>
     </div>
     <br>
@@ -37,4 +37,4 @@
         </tbody>
     </table>
 </div>
-{{>crud/layout/footer}}
+{{>/crud/layout/footer}}
