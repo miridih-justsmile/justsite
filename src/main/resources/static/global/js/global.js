@@ -1,16 +1,29 @@
 "use strict";
-var GlobalAjax = (function () {
-    function GlobalAjax() {
+var DefaultAjaxSpec = (function () {
+    function DefaultAjaxSpec(name, ajaxSetting) {
+        this.name = name;
+        this.ajaxSetting = ajaxSetting;
     }
-    GlobalAjax.get = function (data) {
+    DefaultAjaxSpec.prototype.getSetting = function () {
+        return this.ajaxSetting;
+    };
+    DefaultAjaxSpec.prototype.getName = function () {
+        return this.name;
+    };
+    return DefaultAjaxSpec;
+}());
+var GlobalAjax;
+(function (GlobalAjax) {
+    var responseData = [];
+    function get(data) {
         var deferred = $.Deferred();
         var instanceName = typeof data === "string" ? data : data.getName();
-        if (!!GlobalAjax.responseData[instanceName]) {
-            deferred.resolve(GlobalAjax.responseData[instanceName]);
+        if (!!responseData[instanceName]) {
+            deferred.resolve(responseData[instanceName]);
             return deferred.promise();
         }
         if (typeof data !== "string") {
-            this.init(data).done(function (res) {
+            init(data).done(function (res) {
                 deferred.resolve(res);
             }).fail(function (err) {
                 console.error(err);
@@ -18,19 +31,20 @@ var GlobalAjax = (function () {
             });
         }
         return deferred.promise();
-    };
-    GlobalAjax.init = function (ajaxSpec) {
+    }
+    GlobalAjax.get = get;
+    function init(ajaxSpec) {
         var deferred = $.Deferred();
         $.ajax(ajaxSpec.getSetting()).done(function (res) {
-            GlobalAjax.responseData[ajaxSpec.getName()] = res;
-            deferred.resolve(GlobalAjax.responseData[ajaxSpec.getName()]);
+            responseData[ajaxSpec.getName()] = res;
+            deferred.resolve(responseData[ajaxSpec.getName()]);
         }).fail(function (err) {
             deferred.reject(err);
         });
         return deferred.promise();
-    };
-    return GlobalAjax;
-}());
+    }
+    GlobalAjax.init = init;
+})(GlobalAjax || (GlobalAjax = {}));
 var DefaultAjaxSpec = (function () {
     function DefaultAjaxSpec(name, ajaxSetting) {
         this.name = name;

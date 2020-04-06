@@ -1,2 +1,2 @@
 /// <reference path="./global.d.ts"/>
-/// <reference path="./class/global-ajax.ts"/>
+/// <reference path="./modules/ajax/global-ajax.ts"/>

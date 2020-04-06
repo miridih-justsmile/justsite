@@ -1,6 +1,2 @@
 /// <reference path="../../../typings/index.d.ts" />
-
-interface AjaxSpec {
-    getSetting() : JQueryAjaxSettings;
-    getName() : string;
-}
+/// <reference path="./modules/ajax/class/AjaxSpec.d.ts" />
