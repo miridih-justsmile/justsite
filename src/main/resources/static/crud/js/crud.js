@@ -22,7 +22,7 @@ var Main;
                 ajaxData.callback();
             }
         }).fail(function (err) {
-            console.error(err);
+            console.error(err.responseJSON);
         });
     }
     function save() {

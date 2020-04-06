@@ -21,7 +21,7 @@ namespace Main {
                 ajaxData.callback();
             }
         }).fail((err) => {
-            console.error(err);
+            console.error(err.responseJSON);
         });
     }
 
