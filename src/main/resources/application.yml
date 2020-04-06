@@ -11,7 +11,7 @@ spring:
     include: oauth
 
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
@@ -22,6 +22,8 @@ spring:
   mustache:
     prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates
     cache: false
+#    prefix: classpath:\templates\
 
   resources:
     static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static
+#    static-locations: classpath:\static\

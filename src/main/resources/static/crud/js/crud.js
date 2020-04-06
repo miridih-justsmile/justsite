@@ -1,30 +1,58 @@
-/// <reference path="../../../typings/index.d.ts"/>
-/// <reference path="crud.d.ts" />
-var Main;
-(function (Main) {
+/// <reference path="../../global/js/global.ts" />
+/// <reference path="./crud.d.ts" />
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var Crud;
+(function (Crud) {
+    var CrudAjax = /** @class */ (function (_super) {
+        __extends(CrudAjax, _super);
+        function CrudAjax(ajaxSetting) {
+            return _super.call(this, "crud", ajaxSetting) || this;
+        }
+        return CrudAjax;
+    }(DefaultAjaxSpec));
     function init() {
         $('#btn-save').on('click', save);
         $('#btn-update').on('click', update);
         $('#btn-delete').on('click', del);
-        console.log('init 완료');
     }
-    Main.init = init;
+    Crud.init = init;
     function runAjax(ajaxData) {
-        $.ajax({
+        GlobalAjax.get(new CrudAjax({
             type: ajaxData.type,
             url: ajaxData.url,
             dataType: 'json',
             contentType: 'application/json',
             scriptCharset: 'utf-8',
             data: ajaxData.reqData ? JSON.stringify(ajaxData.reqData) : undefined
-        }).done(function (_) {
+        })).done(function (res) {
             if (!!ajaxData.callback) {
-                ajaxData.callback();
+                ajaxData.callback(res);
             }
-        }).fail(function (err) {
-            console.error(err.responseJSON);
         });
     }
+    function list() {
+        var data = {
+            url: '/api/v1/posts/list',
+            type: 'get',
+            callback: function (res) {
+                console.log(res);
+            }
+        };
+        runAjax(data);
+    }
+    Crud.list = list;
     function save() {
         var data = {
             url: '/api/v1/posts',
@@ -67,5 +95,5 @@ var Main;
         };
         runAjax(data);
     }
-})(Main || (Main = {}));
-Main.init();
+})(Crud || (Crud = {}));
+Crud.init();

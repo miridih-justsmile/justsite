@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outFile": "./global.js",
+    "declaration" : false,
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "pretty": true,
+  }
+}

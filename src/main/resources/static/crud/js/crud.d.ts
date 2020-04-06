@@ -1,4 +1,4 @@
-interface AjaxData {
+interface CrudAjaxData {
     type: string;
     url: string;
     reqData?: {
