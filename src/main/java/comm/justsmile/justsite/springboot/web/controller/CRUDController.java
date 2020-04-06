@@ -18,20 +18,19 @@ public class CRUDController extends DefaultController {
 
     static final String REF_PATH = "/crud";
     private final PostsService postsService;
-    private final HttpSession httpSession;
 
     public CRUDController(PostsService postsService, HttpSession httpSession) {
         super.refPath = REF_PATH;
+        super.httpSession = httpSession;
         this.postsService = postsService;
-        this.httpSession = httpSession;
     }
 
     @GetMapping(value = {"", "/", "/index"})
     public String index(Model model) {
+        final SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if (user != null) {
-            System.out.println(user.getName());
             model.addAttribute("loginUserName", user.getName());
         }
         return resultPath("/index");
@@ -46,7 +45,6 @@ public class CRUDController extends DefaultController {
     public String postsUpdate(@PathVariable Long id, Model model){
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
-        System.out.println(resultPath("posts-update"));
         return resultPath("/posts-update");
     }
 }
