@@ -45,17 +45,4 @@ var GlobalAjax;
     }
     GlobalAjax.init = init;
 })(GlobalAjax || (GlobalAjax = {}));
-var DefaultAjaxSpec = (function () {
-    function DefaultAjaxSpec(name, ajaxSetting) {
-        this.name = name;
-        this.ajaxSetting = ajaxSetting;
-    }
-    DefaultAjaxSpec.prototype.getSetting = function () {
-        return this.ajaxSetting;
-    };
-    DefaultAjaxSpec.prototype.getName = function () {
-        return this.name;
-    };
-    return DefaultAjaxSpec;
-}());
 //# sourceMappingURL=global.js.map
