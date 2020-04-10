@@ -1,13 +1,19 @@
 package comm.justsmile.justsite.springboot.web.controller.default_ctrl;
 
-import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionUser;
-
 import javax.servlet.http.HttpSession;
 
-public class DefaultController implements Controller {
+public abstract class DefaultController implements Controller {
 
+    /**
+     * refPath : reference 가 되는 path.
+     */
     protected String refPath = "/";
     protected HttpSession httpSession;
+
+    public DefaultController(String refPath, HttpSession httpSession) {
+        this.refPath = refPath;
+        this.httpSession = httpSession;
+    }
 
     @Override
     public String resultPath(String path) {

@@ -20,8 +20,7 @@ public class CRUDController extends DefaultController {
     private final PostsService postsService;
 
     public CRUDController(PostsService postsService, HttpSession httpSession) {
-        super.refPath = REF_PATH;
-        super.httpSession = httpSession;
+        super(REF_PATH, httpSession);
         this.postsService = postsService;
     }
 

@@ -1,4 +1,4 @@
-/// <reference path="../../global/js/global.ts" />
+/// <reference path="../../common/js/global/global.ts" />
 /// <reference path="./crud.d.ts" />
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -18,8 +18,11 @@ var Crud;
     var CrudAjax = /** @class */ (function (_super) {
         __extends(CrudAjax, _super);
         function CrudAjax(ajaxSetting) {
-            return _super.call(this, "crud", ajaxSetting) || this;
+            return _super.call(this, 'crud', ajaxSetting) || this;
         }
+        CrudAjax.prototype.getName = function () {
+            return _super.prototype.getName.call(this) + "_" + this.getSetting().type;
+        };
         return CrudAjax;
     }(DefaultAjaxSpec));
     function init() {

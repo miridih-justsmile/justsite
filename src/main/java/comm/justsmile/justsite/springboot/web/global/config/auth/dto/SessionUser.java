@@ -5,6 +5,9 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+/**
+ * Session 에서 추출한 유저정보.
+ */
 @Getter
 public class SessionUser implements Serializable {
     private final String name;

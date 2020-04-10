@@ -1,10 +1,13 @@
-/// <reference path="../../global/js/global.ts" />
+/// <reference path="../../common/js/global/global.ts" />
 /// <reference path="./crud.d.ts" />
 
 namespace Crud {
     class CrudAjax extends DefaultAjaxSpec {
         constructor(ajaxSetting: JQueryAjaxSettings) {
-            super("crud", ajaxSetting)
+            super('crud', ajaxSetting)
+        }
+        getName(): string {
+            return `${super.getName()}_${this.getSetting().type}`;
         }
     }
 

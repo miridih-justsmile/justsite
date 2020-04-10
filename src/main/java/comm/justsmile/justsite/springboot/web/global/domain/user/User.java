@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * User 정보 Entity.
+ */
 @Getter
 @NoArgsConstructor
 @Entity
@@ -43,6 +46,9 @@ public class User {
         return this;
     }
 
+    /**
+     * @return {@link Role}의 getKey()
+     */
     public String getRoleKey() {
         return this.role.getKey();
     }
