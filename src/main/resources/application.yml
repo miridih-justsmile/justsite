@@ -3,17 +3,19 @@ spring:
   mustache:
     suffix: .html
 
+  session:
+    store-type: jdbc
+
+  jpa:
+    show-sql: false
+    properties:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 --- #구분
 spring:
   profiles:
     active: local
     include: oauth
-
-  jpa:
-    show-sql: false
-    properties:
-      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   h2:
     console:

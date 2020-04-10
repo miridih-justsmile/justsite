@@ -53,7 +53,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     /**
      * attributes 에 유저정보가 있으면 update, 없으면 insert 한다.
-     * @param attributes OAuthAttributes
+     * @param attributes {@link OAuthAttributes}
      * @return {@link UserRepository}의 User를 반환.
      */
     private User saveOrUpdate(final OAuthAttributes attributes) {

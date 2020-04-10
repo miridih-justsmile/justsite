@@ -18,7 +18,7 @@ public abstract class DefaultController implements Controller {
     @Override
     public String resultPath(String path) {
         String resultPath = String.format("%s%s", this.refPath, path);
-        System.out.println("들어온 주소 : " + resultPath);
+        System.out.println("반환되는 주소 : " + resultPath);
         return resultPath;
     }
 }

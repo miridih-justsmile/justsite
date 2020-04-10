@@ -1,6 +1,7 @@
 package comm.justsmile.justsite.springboot.web.controller;
 
 import comm.justsmile.justsite.springboot.web.controller.default_ctrl.DefaultController;
+import comm.justsmile.justsite.springboot.web.global.config.auth.domain.LoginUser;
 import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionUser;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsResponseDto;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.service.PostsService;
@@ -25,9 +26,7 @@ public class CRUDController extends DefaultController {
     }
 
     @GetMapping(value = {"", "/", "/index"})
-    public String index(Model model) {
-        final SessionUser user = (SessionUser) httpSession.getAttribute("user");
-
+    public String index(final Model model, final @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
         if (user != null) {
             model.addAttribute("loginUserName", user.getName());
@@ -41,7 +40,7 @@ public class CRUDController extends DefaultController {
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model){
+    public String postsUpdate(final @PathVariable Long id, final Model model){
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
         return resultPath("/posts-update");
