@@ -28,6 +28,7 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-devtools')
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    compile('org.springframework.session:spring-session-jdbc')
 
     /**
      * JDK 11을 사용하는 경우, intellij plugin의 lombok을 사용하면 에러발생.

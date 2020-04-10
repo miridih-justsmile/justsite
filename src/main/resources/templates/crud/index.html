@@ -5,8 +5,9 @@
         <div class="col-md-6">
             <a href="/crud/posts/save" role="button" class="btn btn-primary">글 등록</a>
             {{#loginUserName}}
-            <span>아이디 : </span><span id="user">{{loginUserName}}</span>
             <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{#loginUserPicture}}<img src={{loginUserPicture}} style="height:38px;" />{{/loginUserPicture}}
+            <span id="user">{{loginUserName}}님 환영합니다.</span>
             {{/loginUserName}}
             {{^loginUserName}}
             <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>

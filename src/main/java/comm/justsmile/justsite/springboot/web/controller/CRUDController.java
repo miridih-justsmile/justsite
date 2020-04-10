@@ -30,6 +30,7 @@ public class CRUDController extends DefaultController {
         model.addAttribute("posts", postsService.findAllDesc());
         if (user != null) {
             model.addAttribute("loginUserName", user.getName());
+            model.addAttribute("loginUserPicture", user.getPicture());
         }
         return resultPath("/index");
     }
