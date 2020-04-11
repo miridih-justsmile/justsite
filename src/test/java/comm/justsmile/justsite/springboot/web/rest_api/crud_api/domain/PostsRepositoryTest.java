@@ -1,13 +1,20 @@
 package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain;
 
+import comm.justsmile.justsite.springboot.web.global.config.auth.SecurityConfig;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository.PostsRepository;
+import comm.justsmile.justsite.springboot.web.rest_api.hello_api.HelloController;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -17,6 +24,7 @@ import java.util.List;
 @SpringBootTest
 public class PostsRepositoryTest {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(PostsRepositoryTest.class);
     private final static String TITLE = "테스트 게시글";
     private final static String CONTENT = "테스트 본문";
     private final static String AUTHOR = "테스트 작성자";
@@ -47,8 +55,7 @@ public class PostsRepositoryTest {
 
         List<Posts> postsList = postsRepository.findAll();
         Posts posts = postsList.get(0);
-
-        System.out.println("createData : " + posts.getCreatedDate() + "\n modifyDate : " + posts.getModifiedDate());
+        LOGGER.info(String.format("createData : %s, modifyDate %s", posts.getCreatedDate(), posts.getModifiedDate()));
         Assert.assertTrue(posts.getCreatedDate().isBefore(tomorrow) && posts.getCreatedDate().isAfter(yesterday));
         Assert.assertTrue(posts.getModifiedDate().isBefore(tomorrow) && posts.getModifiedDate().isAfter(yesterday));
     }

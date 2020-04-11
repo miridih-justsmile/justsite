@@ -11,11 +11,16 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+logging:
+  level:
+    org.springframework: info
+
+
 --- #구분
 spring:
   profiles:
     active: local
-    include: oauth
+    include: oauth, log4jdbc
 
   h2:
     console:

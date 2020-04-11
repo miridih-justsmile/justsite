@@ -5,6 +5,8 @@ import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionUser
 import comm.justsmile.justsite.springboot.web.global.domain.user.User;
 import comm.justsmile.justsite.springboot.web.global.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -20,6 +22,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+    private final static Logger LOGGER = LoggerFactory.getLogger(CustomOAuth2UserService.class);
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
@@ -34,6 +37,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         final OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         final OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
+        LOGGER.info(userRequest.getClientRegistration().toString());
         final String registrationId = userRequest.getClientRegistration().getRegistrationId();
         final String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
@@ -42,7 +46,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         final User user = saveOrUpdate(attributes);
 
-        System.out.println("로그인 유저 : " + user.getName());
+        LOGGER.info(attributes.toString());
         httpSession.setAttribute("user", new SessionUser(user));
 
         return new DefaultOAuth2User(
