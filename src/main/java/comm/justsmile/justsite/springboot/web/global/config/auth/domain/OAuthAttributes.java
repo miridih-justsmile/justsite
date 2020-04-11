@@ -4,6 +4,9 @@ import comm.justsmile.justsite.springboot.web.global.domain.user.Role;
 import comm.justsmile.justsite.springboot.web.global.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2Error;
 
 import java.util.Map;
 
@@ -32,8 +35,15 @@ public class OAuthAttributes {
      * @param attributes
      * @return {@link OAuthAttributes}
      */
-    public static OAuthAttributes of(final String registrationId, final String userNameAttributeName, final Map<String, Object> attributes) {
-        return ofGoogle(userNameAttributeName, attributes);
+    public static OAuthAttributes of(final String registrationId, final String userNameAttributeName, final Map<String, Object> attributes) throws OAuth2AuthenticationException {
+        System.out.println(String.format("registrationId : %s", registrationId));
+
+        switch (registrationId) {
+            case "google" : return ofGoogle(userNameAttributeName, attributes);
+            case "naver" : return null;
+            default :
+                throw new OAuth2AuthenticationException(new OAuth2Error(String.valueOf(HttpStatus.UNAUTHORIZED.value())), "찾을 수 없는 로그인 방식");
+        }
     }
 
     /**

@@ -15,7 +15,7 @@ var DefaultAjaxSpec = (function () {
 var GlobalAjax;
 (function (GlobalAjax) {
     var responseData = [];
-    function get(data) {
+    GlobalAjax.get = function (data) {
         var deferred = $.Deferred();
         var instanceName = typeof data === "string" ? data : data.getName();
         if (!!responseData[instanceName]) {
@@ -23,7 +23,7 @@ var GlobalAjax;
             return deferred.promise();
         }
         if (typeof data !== "string") {
-            init(data).done(function (res) {
+            GlobalAjax.run(data).done(function (res) {
                 deferred.resolve(res);
             }).fail(function (err) {
                 console.error(err);
@@ -31,9 +31,8 @@ var GlobalAjax;
             });
         }
         return deferred.promise();
-    }
-    GlobalAjax.get = get;
-    function init(ajaxSpec) {
+    };
+    GlobalAjax.run = function (ajaxSpec) {
         var deferred = $.Deferred();
         $.ajax(ajaxSpec.getSetting()).done(function (res) {
             responseData[ajaxSpec.getName()] = res;
@@ -42,7 +41,6 @@ var GlobalAjax;
             deferred.reject(err);
         });
         return deferred.promise();
-    }
-    GlobalAjax.init = init;
+    };
 })(GlobalAjax || (GlobalAjax = {}));
 //# sourceMappingURL=global.js.map

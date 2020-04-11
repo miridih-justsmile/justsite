@@ -17,8 +17,13 @@ namespace Crud {
         $('#btn-delete').on('click', del);
     }
 
-    function runAjax(ajaxData: CrudAjaxData) {
-        GlobalAjax.get(new CrudAjax({
+    /**
+     * @param ajaxData : CrudAjaxData
+     * @param isInitRun : boolean 무조건 새로운 호출이 필요한가?
+     */
+    function runAjax(ajaxData: CrudAjaxData, isInitRun : boolean = false) {
+        const runModule = isInitRun ? GlobalAjax.run : GlobalAjax.get;
+        runModule(new CrudAjax({
             type: ajaxData.type,
             url: ajaxData.url,
             dataType: 'json',
@@ -35,7 +40,7 @@ namespace Crud {
     export function list() {
         const data: CrudAjaxData = {
             url: '/api/v1/posts/list',
-            type: 'get',
+            type: 'GET',
             callback: (res) => {
                 console.log(res)
             }
@@ -57,7 +62,7 @@ namespace Crud {
                 window.location.href = '/crud'
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
 
     function update() {
@@ -73,7 +78,7 @@ namespace Crud {
                 window.location.href = '/crud'
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
 
     function del() {
@@ -85,7 +90,7 @@ namespace Crud {
                 window.location.href = '/crud'
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
 }
 Crud.init();

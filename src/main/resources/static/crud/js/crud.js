@@ -31,8 +31,14 @@ var Crud;
         $('#btn-delete').on('click', del);
     }
     Crud.init = init;
-    function runAjax(ajaxData) {
-        GlobalAjax.get(new CrudAjax({
+    /**
+     * @param ajaxData : CrudAjaxData
+     * @param isInitRun : boolean 무조건 새로운 호출이 필요한가?
+     */
+    function runAjax(ajaxData, isInitRun) {
+        if (isInitRun === void 0) { isInitRun = false; }
+        var runModule = isInitRun ? GlobalAjax.run : GlobalAjax.get;
+        runModule(new CrudAjax({
             type: ajaxData.type,
             url: ajaxData.url,
             dataType: 'json',
@@ -48,7 +54,7 @@ var Crud;
     function list() {
         var data = {
             url: '/api/v1/posts/list',
-            type: 'get',
+            type: 'GET',
             callback: function (res) {
                 console.log(res);
             }
@@ -70,7 +76,7 @@ var Crud;
                 window.location.href = '/crud';
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
     function update() {
         var data = {
@@ -85,7 +91,7 @@ var Crud;
                 window.location.href = '/crud';
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
     function del() {
         var data = {
@@ -96,7 +102,7 @@ var Crud;
                 window.location.href = '/crud';
             }
         };
-        runAjax(data);
+        runAjax(data, true);
     }
 })(Crud || (Crud = {}));
 Crud.init();

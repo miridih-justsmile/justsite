@@ -10,7 +10,7 @@ module GlobalAjax {
      * 만약, 기존에 Ajax를 통하여 데이터를 가져온 적이 없으면, 새로 init하여 가져온다. (AjaxSpec 을 파라미터로 넣어준 경우에만.)
      * @param data
      */
-    export function get(data : string | AjaxSpec) : JQueryPromise<Response> {
+    export const get = (data : string | AjaxSpec) : JQueryPromise<Response> => {
         const deferred = $.Deferred<Response>();
         const instanceName = typeof data === "string" ? data : data.getName();
 
@@ -20,7 +20,7 @@ module GlobalAjax {
         }
 
         if (typeof data !== "string") {
-            init(data).done((res : any) => {
+            run(data).done((res : any) => {
                 deferred.resolve(res)
             }).fail((err) => {
                 console.error(err);
@@ -28,13 +28,13 @@ module GlobalAjax {
             });
         }
         return deferred.promise();
-    }
+    };
 
     /**
-     * Ajax데이터가 무조건 초기화 되어야하는 경우. 초기화하여 가져온다.
+     * Ajax가 무조건 실행 되어야하는 경우. 실행하여 결과를 가져온다.
      * @param ajaxSpec
      */
-    export function init(ajaxSpec : AjaxSpec) : JQueryPromise<Response> {
+    export const run = (ajaxSpec : AjaxSpec) : JQueryPromise<Response> => {
         const deferred = $.Deferred<Response>();
 
         $.ajax(ajaxSpec.getSetting()).done((res : JQueryPromiseCallback<Response>) => {
@@ -44,6 +44,6 @@ module GlobalAjax {
             deferred.reject(err);
         });
         return deferred.promise();
-    }
+    };
 }
 
