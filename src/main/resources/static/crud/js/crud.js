@@ -67,9 +67,9 @@ var Crud;
             url: '/api/v1/posts',
             type: 'POST',
             reqData: {
-                title: $('#title').val(),
-                content: $('#content').val(),
-                author: $('#author').val()
+                title: domValidity('#title').val(),
+                content: domValidity('#content').val(),
+                author: domValidity('#author', 2).val()
             },
             callback: function () {
                 alert('글이 작성되었습니다.');
@@ -83,8 +83,8 @@ var Crud;
             type: 'PUT',
             url: "/api/v1/posts/" + $('#id').val(),
             reqData: {
-                title: $('#title').val(),
-                content: $('#content').val()
+                title: domValidity('#title').val(),
+                content: domValidity('#content').val()
             },
             callback: function () {
                 alert('글이 수정되었습니다.');
@@ -103,6 +103,16 @@ var Crud;
             }
         };
         runAjax(data, true);
+    }
+    function domValidity(selectorName, minLength) {
+        if (minLength === void 0) { minLength = 5; }
+        var $selector = $(selectorName);
+        if (!StringUtil.isValidity($selector.val(), { minLength: minLength })) {
+            var errMsg = selectorName + "\uC744(\uB97C) \uCD5C\uC18C " + minLength + "\uAE00\uC790 \uC774\uC0C1\uC785\uB825\uD574\uC8FC\uC138\uC694.";
+            alert(errMsg);
+            throw Error(errMsg);
+        }
+        return $selector;
     }
 })(Crud || (Crud = {}));
 Crud.init();

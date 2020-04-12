@@ -1,8 +1,5 @@
 --- #구분
 spring:
-  mustache:
-    suffix: .html
-
   session:
     store-type: jdbc
 
@@ -10,6 +7,7 @@ spring:
     show-sql: false
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
 
 logging:
   level:
@@ -27,10 +25,8 @@ spring:
       enabled: true
 
   mustache:
-    prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates
+    prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates\
     cache: false
-#    prefix: classpath:\templates\
 
   resources:
     static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static
-#    static-locations: classpath:\static\

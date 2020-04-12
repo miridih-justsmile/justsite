@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(CRUDController.REF_PATH)
 public class CRUDController extends DefaultController {
 
-    protected static final String REF_PATH = "/crud";
+    static final String REF_PATH = "/crud";
     private final PostsService postsService;
 
     public CRUDController(final PostsService postsService, final HttpSession httpSession) {
@@ -26,7 +26,7 @@ public class CRUDController extends DefaultController {
     }
 
     @GetMapping(value = {"", "/", "/index"})
-    public String index(final Model model, final @LoginUser SessionUser user) {
+    public String index(final Model model, @LoginUser final SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
         if (user != null) {
             model.addAttribute("loginUserName", user.getName());
@@ -36,12 +36,15 @@ public class CRUDController extends DefaultController {
     }
 
     @GetMapping("/posts/save")
-    public String postsSave() {
+    public String postsSave(final Model model, @LoginUser final SessionUser user) {
+        if(user != null) {
+            model.addAttribute("loginUserName", user.getName());
+        }
         return resultPath("/posts-save");
     }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(final @PathVariable Long id, final Model model){
+    public String postsUpdate(@PathVariable final Long id, final Model model){
         final PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
         return resultPath("/posts-update");

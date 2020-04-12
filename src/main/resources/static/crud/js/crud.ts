@@ -11,7 +11,7 @@ namespace Crud {
         }
     }
 
-    export function init() {
+    export function init() : void {
         $('#btn-save').on('click', save);
         $('#btn-update').on('click', update);
         $('#btn-delete').on('click', del);
@@ -22,7 +22,7 @@ namespace Crud {
      * @param isInitRun : boolean 무조건 새로운 호출이 필요한가?
      */
     function runAjax(ajaxData: CrudAjaxData, isInitRun : boolean = false) {
-        const runModule = isInitRun ? GlobalAjax.run : GlobalAjax.get;
+        const runModule : Function = isInitRun ? GlobalAjax.run : GlobalAjax.get;
         runModule(new CrudAjax({
             type: ajaxData.type,
             url: ajaxData.url,
@@ -53,9 +53,9 @@ namespace Crud {
             url: '/api/v1/posts',
             type: 'POST',
             reqData: {
-                title: $('#title').val(),
-                content: $('#content').val(),
-                author: $('#author').val()
+                title: domValidity('#title').val(),
+                content: domValidity('#content').val(),
+                author: domValidity('#author', 2).val()
             },
             callback: () => {
                 alert('글이 작성되었습니다.');
@@ -70,8 +70,8 @@ namespace Crud {
             type: 'PUT',
             url: `/api/v1/posts/${$('#id').val()}`,
             reqData: {
-                title: $('#title').val(),
-                content: $('#content').val()
+                title: domValidity('#title').val(),
+                content: domValidity('#content').val()
             },
             callback: () => {
                 alert('글이 수정되었습니다.');
@@ -91,6 +91,16 @@ namespace Crud {
             }
         };
         runAjax(data, true);
+    }
+
+    function domValidity(selectorName : string, minLength : number = 5) : JQuery {
+        const $selector = $(selectorName);
+        if(!StringUtil.isValidity($selector.val(), {minLength : minLength})) {
+            const errMsg = `${selectorName}을(를) 최소 ${minLength}글자 이상입력해주세요.`;
+            alert(errMsg);
+            throw Error(errMsg);
+        }
+        return $selector;
     }
 }
 Crud.init();

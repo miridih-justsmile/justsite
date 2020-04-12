@@ -12,10 +12,10 @@ public abstract class DefaultController implements Controller {
     /**
      * refPath : reference 가 되는 path.
      */
-    protected final String refPath;
-    protected final HttpSession httpSession;
+    private final String refPath;
+    private final HttpSession httpSession;
 
-    public DefaultController(final String refPath,final HttpSession httpSession) {
+    public DefaultController(final String refPath, final HttpSession httpSession) {
         this.refPath = refPath;
         this.httpSession = httpSession;
     }

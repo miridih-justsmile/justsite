@@ -1,5 +1,5 @@
-/// <reference path="../../global.d.ts" />
-/// <reference path="./class/AjaxSpec.ts"/>
+/// <reference path="../../../../../../typings/index.d.ts" />
+/// <reference path="./global-ajax.d.ts" />
 
 module GlobalAjax {
     const responseData : {[key : string] : any} = [];

@@ -43,4 +43,15 @@ var GlobalAjax;
         return deferred.promise();
     };
 })(GlobalAjax || (GlobalAjax = {}));
+var StringUtil;
+(function (StringUtil) {
+    StringUtil.isValidity = function (str, validCondition) {
+        if (str === undefined || str === null || str === "")
+            return false;
+        return !(!!validCondition && ((!!validCondition.minLength && validCondition.minLength > str.length) ||
+            (!!validCondition.maxLength && validCondition.maxLength < str.length) ||
+            (!!validCondition.mustNotInStr && str.indexOf(validCondition.mustNotInStr) > -1) ||
+            (!!validCondition.mustInStr && str.indexOf(validCondition.mustInStr) < 0)));
+    };
+})(StringUtil || (StringUtil = {}));
 //# sourceMappingURL=global.js.map

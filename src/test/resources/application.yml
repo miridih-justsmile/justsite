@@ -1,7 +1,4 @@
 spring:
-  mustache:
-    suffix: .html
-
   session:
     store-type: jdbc
 
