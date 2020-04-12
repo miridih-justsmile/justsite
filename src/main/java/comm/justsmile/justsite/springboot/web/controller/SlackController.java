@@ -11,9 +11,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(SlackController.REF_PATH)
 public class SlackController extends DefaultController {
 
-    static final String REF_PATH = "/slack";
+    protected static final String REF_PATH = "/slack";
 
-    public SlackController(HttpSession httpSession) {
+    public SlackController(final HttpSession httpSession) {
         super(REF_PATH, httpSession);
     }
 

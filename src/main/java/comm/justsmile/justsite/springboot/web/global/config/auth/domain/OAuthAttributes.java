@@ -55,7 +55,7 @@ public class OAuthAttributes {
      * @return {@link OAuthAttributes}
      */
     private static OAuthAttributes ofNaver(final String userNameAttributeName, final Map<String, Object> attributes) {
-        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+        final Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 public class SlackApiController {
 
     @PostMapping("/slack/msg")
-    public String sendMsg(@RequestParam("msg") String msg){
+    public String sendMsg(@RequestParam("msg") final String msg){
         return msg;
     }
 }

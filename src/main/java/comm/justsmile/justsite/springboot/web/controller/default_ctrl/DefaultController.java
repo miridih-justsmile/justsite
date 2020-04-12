@@ -7,21 +7,21 @@ import javax.servlet.http.HttpSession;
 
 public abstract class DefaultController implements Controller {
 
-    protected static Logger LOGGER = LoggerFactory.getLogger(DefaultController.class);
+    protected final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     /**
      * refPath : reference 가 되는 path.
      */
-    protected String refPath = "/";
-    protected HttpSession httpSession;
+    protected final String refPath;
+    protected final HttpSession httpSession;
 
-    public DefaultController(String refPath, HttpSession httpSession) {
+    public DefaultController(final String refPath,final HttpSession httpSession) {
         this.refPath = refPath;
         this.httpSession = httpSession;
     }
 
     @Override
-    public String resultPath(String path) {
+    public final String resultPath(final String path) {
         String resultPath = String.format("%s%s", this.refPath, path);
         LOGGER.info("반환되는 주소 : " + resultPath);
         return resultPath;

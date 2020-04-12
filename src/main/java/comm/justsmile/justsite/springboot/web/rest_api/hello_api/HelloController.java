@@ -14,7 +14,7 @@ public class HelloController {
     }
 
     @GetMapping("/hello/dto")
-    public HelloDto getHelloDto(@RequestParam("name") String name, @RequestParam("value") String value) {
+    public HelloDto getHelloDto(@RequestParam("name") final String name, @RequestParam("value") final String value) {
         return new HelloDto(name, value);
     }
 }

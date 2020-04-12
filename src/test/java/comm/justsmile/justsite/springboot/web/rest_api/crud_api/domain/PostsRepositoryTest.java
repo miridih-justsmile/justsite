@@ -1,8 +1,6 @@
 package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain;
 
-import comm.justsmile.justsite.springboot.web.global.config.auth.SecurityConfig;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository.PostsRepository;
-import comm.justsmile.justsite.springboot.web.rest_api.hello_api.HelloController;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,10 +9,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;

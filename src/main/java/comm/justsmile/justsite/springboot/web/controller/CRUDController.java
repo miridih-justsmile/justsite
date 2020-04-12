@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping(CRUDController.REF_PATH)
 public class CRUDController extends DefaultController {
 
-    static final String REF_PATH = "/crud";
+    protected static final String REF_PATH = "/crud";
     private final PostsService postsService;
 
-    public CRUDController(PostsService postsService, HttpSession httpSession) {
+    public CRUDController(final PostsService postsService, final HttpSession httpSession) {
         super(REF_PATH, httpSession);
         this.postsService = postsService;
     }
@@ -42,7 +42,7 @@ public class CRUDController extends DefaultController {
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(final @PathVariable Long id, final Model model){
-        PostsResponseDto dto = postsService.findById(id);
+        final PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
         return resultPath("/posts-update");
     }

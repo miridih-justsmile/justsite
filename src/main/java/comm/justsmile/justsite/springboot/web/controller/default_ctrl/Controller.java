@@ -7,5 +7,5 @@ interface Controller {
      * @param path : 새로 정의된 path.
      * @return 최종적으로 정의된 path.
      */
-    String resultPath(String path);
+    String resultPath(final String path);
 }

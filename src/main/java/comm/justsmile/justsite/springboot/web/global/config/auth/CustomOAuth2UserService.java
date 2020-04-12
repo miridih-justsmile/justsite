@@ -22,7 +22,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final static Logger LOGGER = LoggerFactory.getLogger(CustomOAuth2UserService.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(CustomOAuth2UserService.class);
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
