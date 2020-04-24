@@ -10,6 +10,11 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+  mustache:
+    prefix: classpath:/templates/
+    suffix: .mustache
+    cache: false
+
 logging:
   level:
     org.springframework: info
