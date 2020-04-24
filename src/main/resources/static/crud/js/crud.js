@@ -116,3 +116,4 @@ var Crud;
     }
 })(Crud || (Crud = {}));
 Crud.init();
+console.log('crud script 실행ㅇㅇㅇ');

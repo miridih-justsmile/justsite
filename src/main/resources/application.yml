@@ -1,5 +1,7 @@
---- #구분
 spring:
+  profiles:
+    include: oauth
+
   session:
     store-type: jdbc
 
@@ -8,17 +10,17 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-
 logging:
   level:
     org.springframework: info
 
+--- #구분
+spring:
+  profiles: real
 
 --- #구분
 spring:
-  profiles:
-    active: local
-    include: oauth, log4jdbc
+  profiles: local
 
   h2:
     console:
