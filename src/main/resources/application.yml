@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: oauth
+    include: oauth  
 
   session:
     store-type: jdbc
@@ -11,9 +11,11 @@ spring:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
   mustache:
-    prefix: classpath:/templates/
-    suffix: .mustache
+    prefix: file:///app/repo/justsite/src/main/resources/templates/
     cache: false
+
+  resources:
+    static-locations: file:///app/repo/justsite/src/main/resources/static
 
 logging:
   level:
