@@ -1,41 +1,51 @@
 {{>crud/layout/header}}
-<h1>스프링부트로 시작하는 웹 서비스 Ver.2</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/crud/posts/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#loginUserName}}
-            <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{#loginUserPicture}}<img src="{{loginUserPicture}}" style="height:38px;" />{{/loginUserPicture}}
-            <span id="user">{{loginUserName}}님 환영합니다.</span>
-            {{/loginUserName}}
-            {{^loginUserName}}
-            <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-            <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/loginUserName}}
+<link rel="stylesheet" type="text/css" href="/crud/css/index.css"/>
+<section id="CrudIndex">
+    <div class="css-notice-wrapper">
+        <div class="css-notice">
+            <div class="css-notice-title"><i class="css-info-icon"></i>간단히 구현된 게시판입니다.</div>
+            <div class="css-notice-content">욕설 및 남을 비방하는 행위는 자제해주세요.
+                사이트 이용에 불이익이 있을 수 있습니다.
+            </div>
         </div>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>게시글번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>최종수정일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#posts}}
-        <tr>
-            <td>{{id}}</td>
-            <td><a href="/crud/posts/update/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
-            <td>{{modifiedDate}}</td>
-        </tr>
-        {{/posts}}
-        </tbody>
-    </table>
-</div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="/crud/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                {{#loginUserName}}
+                    <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+                    {{#loginUserPicture}}<img src="{{loginUserPicture}}" style="height:38px;"/>{{/loginUserPicture}}
+                    <span id="user">{{loginUserName}}님 환영합니다.</span>
+                {{/loginUserName}}
+                {{^loginUserName}}
+                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                    <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                {{/loginUserName}}
+            </div>
+        </div>
+        <br>
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>게시글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#posts}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="/crud/posts/update/{{id}}">{{title}}</a></td>
+                    <td>{{author}}</td>
+                    <td>{{modifiedDate}}</td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+    </div>
+</section>
 {{>crud/layout/footer}}

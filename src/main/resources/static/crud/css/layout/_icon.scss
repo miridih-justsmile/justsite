@@ -1,0 +1,8 @@
+@import url("//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css");
+.css-info-icon {
+  color: #4a6785;
+  &:before {
+    font-family: "xeicon";
+    content: "\e9a7";
+  }
+}

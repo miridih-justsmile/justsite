@@ -1,0 +1,26 @@
+@import "layout/icon";
+
+#CrudIndex {
+  font-family: "Noto Sans KR";
+  box-sizing: border-box;
+  .css-notice-wrapper {
+    width: 100%;
+    .css-notice {
+      margin: 15px 30px;
+      border: 1px #aab8c6 solid;
+      background-color: #fcfcfc;
+      border-radius: 5px;
+      text-align: center;
+      white-space: pre-line;
+      .css-notice-title {
+        .css-info-icon {
+          margin-right: 10px;
+        }
+        font-size: 25px;
+      }
+      .css-notice-content {
+        font-size: 15px;
+      }
+    }
+  }
+}
