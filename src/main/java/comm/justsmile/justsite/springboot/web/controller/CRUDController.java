@@ -2,7 +2,7 @@ package comm.justsmile.justsite.springboot.web.controller;
 
 import comm.justsmile.justsite.springboot.web.controller.default_ctrl.DefaultController;
 import comm.justsmile.justsite.springboot.web.global.config.auth.domain.LoginUser;
-import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionUser;
+import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionLoginUser;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsResponseDto;
 import comm.justsmile.justsite.springboot.web.rest_api.crud_api.service.PostsService;
 import org.springframework.stereotype.Controller;
@@ -26,19 +26,19 @@ public class CRUDController extends DefaultController {
     }
 
     @GetMapping(value = {"", "/", "/index"})
-    public String index(final Model model, @LoginUser final SessionUser user) {
+    public String index(final Model model, @LoginUser final SessionLoginUser loginUser) {
         model.addAttribute("posts", postsService.findAllDesc());
-        if (user != null) {
-            model.addAttribute("loginUserName", user.getName());
-            model.addAttribute("loginUserPicture", user.getPicture());
+        if (loginUser != null) {
+            model.addAttribute("loginUserName", loginUser.getName());
+            model.addAttribute("loginUserPicture", loginUser.getPicture());
         }
         return resultPath("/index");
     }
 
     @GetMapping("/posts/save")
-    public String postsSave(final Model model, @LoginUser final SessionUser user) {
-        if(user != null) {
-            model.addAttribute("loginUserName", user.getName());
+    public String postsSave(final Model model, @LoginUser final SessionLoginUser loginUser) {
+        if(loginUser != null) {
+            model.addAttribute("loginUserName", loginUser.getName());
         }
         return resultPath("/posts-save");
     }

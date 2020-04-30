@@ -1,7 +1,8 @@
 package comm.justsmile.justsite.springboot.web.global.config.auth.domain;
 
-import comm.justsmile.justsite.springboot.web.global.domain.user.Role;
-import comm.justsmile.justsite.springboot.web.global.domain.user.User;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.Role;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.user.User;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.Visitor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,14 +23,16 @@ public class OAuthAttributes {
     private String name;
     private String email;
     private String picture;
+    private String sessionId;
 
     @Builder
-    public OAuthAttributes(final Map<String, Object> attributes, final String nameAttributeKey, final String name, final String email, final String picture) {
+    public OAuthAttributes(final Map<String, Object> attributes, final String nameAttributeKey, final String name, final String email, final String picture, final String sessionId) {
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
         this.email = email;
-        this.picture = picture;
+        this.picture = picture;;
+        this.sessionId = sessionId;
     }
 
     /**
@@ -39,10 +42,10 @@ public class OAuthAttributes {
      * @param attributes
      * @return {@link OAuthAttributes}
      */
-    public static OAuthAttributes of(final String registrationId, final String userNameAttributeName, final Map<String, Object> attributes) throws OAuth2AuthenticationException {
+    public static OAuthAttributes of(final String sessionId, final String registrationId, final String userNameAttributeName, final Map<String, Object> attributes) throws OAuth2AuthenticationException {
         switch (registrationId) {
-            case "google" : return ofGoogle(userNameAttributeName, attributes);
-            case "naver" : return ofNaver("id", attributes);
+            case "google" : return ofGoogle(sessionId, userNameAttributeName, attributes);
+            case "naver" : return ofNaver(sessionId, "id", attributes);
             default :
                 throw new OAuth2AuthenticationException(new OAuth2Error(String.valueOf(HttpStatus.UNAUTHORIZED.value())), "찾을 수 없는 로그인 방식");
         }
@@ -54,7 +57,7 @@ public class OAuthAttributes {
      * @param attributes
      * @return {@link OAuthAttributes}
      */
-    private static OAuthAttributes ofNaver(final String userNameAttributeName, final Map<String, Object> attributes) {
+    private static OAuthAttributes ofNaver(final String sessionId, final String userNameAttributeName, final Map<String, Object> attributes) {
         final Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
@@ -62,6 +65,7 @@ public class OAuthAttributes {
                 .picture((String) response.get("profile_image"))
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
+                .sessionId(sessionId)
                 .build();
     }
 
@@ -71,8 +75,9 @@ public class OAuthAttributes {
      * @param attributes
      * @return {@link OAuthAttributes}
      */
-    private static OAuthAttributes ofGoogle(final String userNameAttributeName, final Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(final String sessionId, final String userNameAttributeName, final Map<String, Object> attributes) {
         return OAuthAttributes.builder()
+                .sessionId(sessionId)
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
                 .picture((String) attributes.get("picture"))
@@ -85,12 +90,7 @@ public class OAuthAttributes {
      * entity 데이터 세팅.
      * @return {@link User}
      */
-    public User toEntity() {
-        return User.builder()
-                .name(this.name)
-                .email(this.email)
-                .picture(this.picture)
-                .role(Role.USER)
-                .build();
+    public User toEntity(final Visitor visitor) {
+        return new User(visitor, this.name, this.email, this.picture, Role.USER);
     }
 }

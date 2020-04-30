@@ -1,6 +1,6 @@
 package comm.justsmile.justsite.springboot.web.global.config.auth;
 
-import comm.justsmile.justsite.springboot.web.global.domain.user.Role;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

@@ -10,6 +10,20 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org.springframework: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{visitorIp}] [%thread] %-5level %logger{36} – %msg%n"
+
+--- #구분
+spring:
+  profiles: real
+
   mustache:
     prefix: file:///app/repo/justsite/src/main/resources/templates/
     cache: false
@@ -17,21 +31,9 @@ spring:
   resources:
     static-locations: file:///app/repo/justsite/src/main/resources/static
 
-logging:
-  level:
-    org.springframework: info
-
---- #구분
-spring:
-  profiles: real
-
 --- #구분
 spring:
   profiles: local
-
-  h2:
-    console:
-      enabled: true
 
   mustache:
     prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates\

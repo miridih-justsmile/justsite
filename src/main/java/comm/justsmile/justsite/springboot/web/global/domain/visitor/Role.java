@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.global.domain.user;
+package comm.justsmile.justsite.springboot.web.global.domain.visitor;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
