@@ -12,6 +12,10 @@ spring:
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
+# debug log 에서 parameter 정보 보이도록 활성화.
+  http:
+    log-request-details: true
+
 #  h2:
 #    console:
 #      enabled: true
@@ -19,8 +23,10 @@ spring:
 logging:
   level:
     org.springframework: info
+    org.springframework.web.servlet: debug
   pattern:
-    console: "%d{MM-dd HH:mm:ss} [%X{visitorIp}] [%thread] %-5level %logger{0} – %msg%n"
+    console: "%d{MM-dd HH:mm:ss} [%X{visitorIp}] [%thread] %-5level %logger – %msg%n"
+
 
 --- #구분
 spring:
