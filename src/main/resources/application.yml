@@ -1,24 +1,26 @@
 spring:
   profiles:
-    include: oauth  
+    include: oauth, db
 
   session:
     store-type: jdbc
 
   jpa:
     show-sql: false
+    hibernate:
+      ddl-auto: create
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-  h2:
-    console:
-      enabled: true
+#  h2:
+#    console:
+#      enabled: true
 
 logging:
   level:
     org.springframework: info
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{visitorIp}] [%thread] %-5level %logger{36} – %msg%n"
+    console: "%d{MM-dd HH:mm:ss} [%X{visitorIp}] [%thread] %-5level %logger{0} – %msg%n"
 
 --- #구분
 spring:
@@ -30,6 +32,13 @@ spring:
 
   resources:
     static-locations: file:///app/repo/justsite/src/main/resources/static
+
+server:
+  tomcat:
+    basedir: .
+    accesslog:
+      pattern: "%{yyyy-MM-dd HH:mm:ss}t\t%s\t%r\t%{User-Agent}i\t%{Referer}i\t%a\t%b"
+      enabled: true
 
 --- #구분
 spring:

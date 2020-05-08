@@ -1,5 +1,6 @@
 package comm.justsmile.justsite.springboot.web.global.domain.visitor;
 
+import comm.justsmile.justsite.springboot.web.global.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Visitor implements Serializable {
+public class Visitor extends BaseTimeEntity implements Serializable {
 
     @Id
     @GeneratedValue

@@ -1,11 +1,13 @@
 package comm.justsmile.justsite.springboot.web.controller.default_ctrl;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpSession;
 
-@Slf4j
 public abstract class DefaultController implements Controller {
+
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * refPath : reference 가 되는 path.
