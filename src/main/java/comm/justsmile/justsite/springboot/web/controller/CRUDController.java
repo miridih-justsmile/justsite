@@ -40,13 +40,13 @@ public class CRUDController extends DefaultController {
         if(loginUser != null) {
             model.addAttribute("loginUserName", loginUser.getName());
         }
-        return resultPath("/posts-save");
+        return resultPath("/posts/save");
     }
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable final Long id, final Model model){
         final PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
-        return resultPath("/posts-update");
+        return resultPath("/posts/update");
     }
 }

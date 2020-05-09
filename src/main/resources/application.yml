@@ -7,18 +7,12 @@ spring:
 
   jpa:
     show-sql: false
-    hibernate:
-      ddl-auto: none
     properties:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
 # debug log 에서 parameter 정보 보이도록 활성화.
   http:
     log-request-details: true
-
-#  h2:
-#    console:
-#      enabled: true
 
 logging:
   level:
@@ -53,6 +47,7 @@ spring:
   mustache:
     prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates\
     cache: false
+    suffix: .mustache
 
   resources:
     static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static

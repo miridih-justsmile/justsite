@@ -1,4 +1,4 @@
-/// <reference path="../../common/js/global/global.ts" />
+/// <reference path="../common/js/global/global.ts" />
 /// <reference path="./crud.d.ts" />
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
