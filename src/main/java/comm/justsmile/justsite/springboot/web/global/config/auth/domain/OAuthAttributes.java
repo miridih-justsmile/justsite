@@ -18,6 +18,7 @@ import java.util.Map;
 @ToString
 public class OAuthAttributes {
     private static final Logger LOGGER = LoggerFactory.getLogger(OAuthAttributes.class);
+    private String providerId;
     private Map<String, Object> attributes;
     private String nameAttributeKey;
     private String name;
@@ -26,7 +27,8 @@ public class OAuthAttributes {
     private String sessionId;
 
     @Builder
-    public OAuthAttributes(final Map<String, Object> attributes, final String nameAttributeKey, final String name, final String email, final String picture, final String sessionId) {
+    public OAuthAttributes(final String providerId, final Map<String, Object> attributes, final String nameAttributeKey, final String name, final String email, final String picture, final String sessionId) {
+        this.providerId = providerId;
         this.attributes = attributes;
         this.nameAttributeKey = nameAttributeKey;
         this.name = name;
@@ -44,7 +46,7 @@ public class OAuthAttributes {
      */
     public static OAuthAttributes of(final String sessionId, final String registrationId, final String userNameAttributeName, final Map<String, Object> attributes) throws OAuth2AuthenticationException {
         switch (registrationId) {
-            case "google" : return ofGoogle(sessionId, userNameAttributeName, attributes);
+            case "google" : return ofGoogle(attributes.get("sub").toString(), sessionId, userNameAttributeName, attributes);
             case "naver" : return ofNaver(sessionId, "id", attributes);
             default :
                 throw new OAuth2AuthenticationException(new OAuth2Error(String.valueOf(HttpStatus.UNAUTHORIZED.value())), "찾을 수 없는 로그인 방식");
@@ -66,6 +68,7 @@ public class OAuthAttributes {
                 .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .sessionId(sessionId)
+                .providerId(String.format("%s-%s", response.get("name"), response.get("email")))
                 .build();
     }
 
@@ -75,8 +78,9 @@ public class OAuthAttributes {
      * @param attributes
      * @return {@link OAuthAttributes}
      */
-    private static OAuthAttributes ofGoogle(final String sessionId, final String userNameAttributeName, final Map<String, Object> attributes) {
+    private static OAuthAttributes ofGoogle(final String providerId, final String sessionId, final String userNameAttributeName, final Map<String, Object> attributes) {
         return OAuthAttributes.builder()
+                .providerId(providerId)
                 .sessionId(sessionId)
                 .name((String) attributes.get("name"))
                 .email((String) attributes.get("email"))
@@ -90,7 +94,7 @@ public class OAuthAttributes {
      * entity 데이터 세팅.
      * @return {@link User}
      */
-    public User toEntity(final Visitor visitor) {
-        return new User(visitor, this.name, this.email, this.picture, Role.USER);
+    public User toEntity(final Visitor visitor, final OAuthAttributes authAttributes) {
+        return new User(visitor, this.name, this.email, this.picture, authAttributes.getProviderId(), Role.USER);
     }
 }

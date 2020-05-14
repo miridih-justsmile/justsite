@@ -2,15 +2,12 @@ package comm.justsmile.justsite.springboot.web.global.config.auth;
 
 import comm.justsmile.justsite.springboot.web.global.config.auth.domain.OAuthAttributes;
 import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionLoginUser;
-import comm.justsmile.justsite.springboot.web.global.domain.visitor.VisitorService;
-import comm.justsmile.justsite.springboot.web.global.domain.visitor.user.User;
-import comm.justsmile.justsite.springboot.web.global.domain.visitor.user.UserRepository;
 import comm.justsmile.justsite.springboot.web.global.domain.visitor.Visitor;
 import comm.justsmile.justsite.springboot.web.global.domain.visitor.VisitorRepository;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.user.User;
+import comm.justsmile.justsite.springboot.web.global.domain.visitor.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -27,8 +24,7 @@ import java.util.Collections;
 @Service
 @Slf4j
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
-    private final Logger LOGGER = LoggerFactory.getLogger(CustomOAuth2UserService.class);
-    private final VisitorService visitorService;
+
     private final UserRepository userRepository;
     private final HttpSession httpSession;
 
@@ -43,7 +39,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         final OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
         final OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
-        LOGGER.info(userRequest.getClientRegistration().toString());
+        log.info(userRequest.getClientRegistration().toString());
         final String registrationId = userRequest.getClientRegistration().getRegistrationId();
         final String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
@@ -53,9 +49,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         final OAuthAttributes attributes = OAuthAttributes.of(httpSession.getId(), registrationId, userNameAttributeName, oAuth2User.getAttributes());
 
-        final User user = saveOrUpdate(attributes);
+        final Visitor visitor = (Visitor) httpSession.getAttribute("visitor");
+        final User user = saveOrUpdate(attributes, visitor);
 
-        LOGGER.info(attributes.toString());
+        log.info(attributes.toString());
         httpSession.setAttribute("user", new SessionLoginUser(user));
 
         return new DefaultOAuth2User(
@@ -69,12 +66,10 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
      * @param attributes {@link OAuthAttributes}
      * @return {@link VisitorRepository}의 User를 반환.
      */
-    private User saveOrUpdate(final OAuthAttributes attributes) {
-        Visitor visitor = (Visitor) httpSession.getAttribute("visitor");
+    private User saveOrUpdate(final OAuthAttributes attributes, final Visitor visitor) {
         final User user = userRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(visitor, attributes.getName(), attributes.getPicture()))
-                .orElse(attributes.toEntity(visitor));
-
+                .orElse(attributes.toEntity(visitor, attributes));
         return userRepository.save(user);
     }
 }

@@ -14,8 +14,8 @@ import java.io.Serializable;
 public class Visitor extends BaseTimeEntity implements Serializable {
 
     @Id
-    @GeneratedValue
-    protected Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long idx;
 
     @Column(nullable = false)
     protected String sessionId;
@@ -24,7 +24,7 @@ public class Visitor extends BaseTimeEntity implements Serializable {
     protected String ip;
 
     @Column
-    protected boolean isLogin = false;
+    protected Long loginIdx;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -35,6 +35,7 @@ public class Visitor extends BaseTimeEntity implements Serializable {
         this.sessionId = sessionId;
         this.ip = ip;
         this.role = role;
+        this.loginIdx = 0L;
     }
 
     /**
@@ -44,9 +45,29 @@ public class Visitor extends BaseTimeEntity implements Serializable {
         return this.role.getKey();
     }
 
-    public Visitor update(final String sessionId, final String ip) {
-        this.sessionId = sessionId;
+    public Visitor updateIp(final String ip) {
         this.ip = ip;
         return this;
+    }
+
+    public Visitor updateSessionId(final String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    public Visitor setLogin(final Long userIdx) {
+        this.loginIdx = userIdx;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Visitor{" +
+                "idx=" + idx +
+                ", sessionId='" + sessionId + '\'' +
+                ", ip='" + ip + '\'' +
+                ", loginIdx=" + loginIdx +
+                ", role=" + role +
+                '}';
     }
 }
