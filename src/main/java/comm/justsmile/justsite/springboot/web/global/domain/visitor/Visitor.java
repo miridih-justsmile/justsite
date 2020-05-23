@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Entity
 public class Visitor extends BaseTimeEntity implements Serializable {
 
+    private static final long serialVersionUID = 4002155747245838752L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idx;

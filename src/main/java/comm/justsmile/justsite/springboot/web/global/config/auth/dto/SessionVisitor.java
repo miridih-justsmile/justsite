@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 @Getter
 public class SessionVisitor implements Serializable {
+    private static final long serialVersionUID = 4L;
+
     protected String userIp;
     protected String sessionId;
 
