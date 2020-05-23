@@ -38,6 +38,6 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
         } catch (Exception e) {
             MDC.clear();
         }
-        return true;
+        return Boolean.TRUE;
     }
 }

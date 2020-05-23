@@ -21,7 +21,6 @@ before_deploy:
   - mkdir -p deploy # 실제 전송될 장소
   - mv justsite.zip deploy/justsite.zip # deploy로 zip파일 이동
 
-
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -33,6 +32,16 @@ deploy:
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: justsite-build # S3 버킷
+    region: ap-northeast-2
+    bundle_type: zip
+    key: justsite.zip # 빌드 파일을 압축해서 전달
+    application: justsite-deploy-application # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+    deployment_group: justsite-deploy-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+    wait-until-deployed: true
 
 # CI 실행 완료시 메일로 알람
 notifications:
