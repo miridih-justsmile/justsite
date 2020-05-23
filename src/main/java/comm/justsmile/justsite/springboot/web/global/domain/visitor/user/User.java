@@ -18,8 +18,6 @@ import java.io.Serializable;
 @Entity
 public class User extends BaseTimeEntity implements Serializable{
 
-    private static final long serialVersionUID = 2L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long idx;
