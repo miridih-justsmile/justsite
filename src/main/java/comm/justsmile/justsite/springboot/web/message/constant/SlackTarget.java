@@ -1,7 +1,7 @@
 package comm.justsmile.justsite.springboot.web.message.constant;
 
 public enum SlackTarget {
-    TEST("https://hooks.slack.com/services/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");
+    TEST("https://hooks.slack.com/services/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");
 
     private String url;
 
