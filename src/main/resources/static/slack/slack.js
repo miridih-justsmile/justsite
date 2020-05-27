@@ -38,7 +38,6 @@ var SlackAPIModule;
             GlobalAjax.run(new SlackAjax({
                 url: "/slack/msg",
                 data: { msg: msg },
-                scriptCharset: 'utf-8',
                 type: 'POST'
             })).done(function (res) {
                 console.log(res);

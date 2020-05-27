@@ -1,15 +1,19 @@
 package comm.justsmile.justsite.springboot.web.message.constant;
 
-public enum SlackTarget {
-    TEST("https://hooks.slack.com/services/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");
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
-    private String url;
+@Configuration
+@ConfigurationProperties(prefix = "slack.bot")
+public class SlackTarget {
+    private String test;
 
-    SlackTarget(String url){
-        this.url = url;
+    public String getTest() {
+        return test;
     }
 
-    public String getUrl() {
-        return this.url;
+    public void setTest(String test) {
+        this.test = test;
     }
+
 }
