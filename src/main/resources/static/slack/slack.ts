@@ -1,11 +1,10 @@
 /// <reference path="../common/js/global/global.ts" />
 
 namespace SlackAPIModule {
-
     export function init() {
         console.log('SlackAPIModule init 시작');
-        $('.js-send').on('click', function() {
-            SlackAPI.sendMsg($('.js-slack-msg').val());
+        $('.js-msg-send').on('click', function() {
+            SlackAPI.sendMsg($('.js-slack-msg').val(), $('.js-target-name').val());
         });
 
     }
@@ -19,12 +18,11 @@ namespace SlackAPIModule {
         }
     }
 
-
     class SlackAPI {
-        public static sendMsg(msg : string) {
+        public static sendMsg(msg : string, targetName : string) {
             GlobalAjax.run(new SlackAjax({
                 url : "/slack/msg",
-                data: {msg: msg},
+                data: {msg: msg, target:targetName},
                 type: 'POST'
             })).done(res=>{
                 console.log(res)

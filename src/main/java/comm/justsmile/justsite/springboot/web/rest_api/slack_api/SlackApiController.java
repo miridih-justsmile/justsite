@@ -1,6 +1,8 @@
 package comm.justsmile.justsite.springboot.web.rest_api.slack_api;
 
-import comm.justsmile.justsite.springboot.web.message.domain.Slack;
+import comm.justsmile.justsite.springboot.web.message.MessengerException;
+import comm.justsmile.justsite.springboot.web.message.domain.SlackTarget;
+import comm.justsmile.justsite.springboot.web.message.service.SlackPayload;
 import comm.justsmile.justsite.springboot.web.message.service.SlackService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
@@ -21,11 +23,13 @@ public class SlackApiController {
     }
 
     @PostMapping("/slack/msg")
-    public int sendMsg(@RequestParam("msg") final String msg){
+    public int sendMsg(@RequestParam("msg") final String msg, @RequestParam("target")final String target) throws MessengerException {
         log.info(msg);
-        if(new Slack().send(slackService.getPayload(msg))) {
+        final SlackTarget notifyTarget = slackService.findSlackTarget(target);
+        if(slackService.send(new SlackPayload(notifyTarget.getTarget(), msg))) {
             return HttpStatus.SC_OK;
         }
         return HttpStatus.SC_BAD_REQUEST;
     }
+
 }

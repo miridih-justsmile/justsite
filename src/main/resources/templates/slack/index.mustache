@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>슬랙</title>
-</head>
-<script src="/common/js/jquery.min.js"></script>
-<script src="/common/js/bootstrap.min.js"></script>
-<script src="/common/js/global/global.js"></script>
-<body>
-<section>
-    <input type="text" class="js-slack-msg"/>
-    <button class="js-send">Send</button>
+{{>slack/layout/header}}
+<section id="SlackTargetList">
+    <select class="js-target-name">
+    {{#slackTargetList}}
+        <option>{{name}}</option>
+    {{/slackTargetList}}
+    </select>
 </section>
+
+<section id="SlackSend">
+    <input type="text" class="js-slack-msg"/>
+    <button class="js-msg-send">Send</button>
+</section>
+
 <script src="/slack/slack.js"></script>
-</body>
-</html>
+{{>slack/layout/footer}}

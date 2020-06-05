@@ -16,8 +16,8 @@ var SlackAPIModule;
 (function (SlackAPIModule) {
     function init() {
         console.log('SlackAPIModule init 시작');
-        $('.js-send').on('click', function () {
-            SlackAPI.sendMsg($('.js-slack-msg').val());
+        $('.js-msg-send').on('click', function () {
+            SlackAPI.sendMsg($('.js-slack-msg').val(), $('.js-target-name').val());
         });
     }
     SlackAPIModule.init = init;
@@ -34,10 +34,10 @@ var SlackAPIModule;
     var SlackAPI = /** @class */ (function () {
         function SlackAPI() {
         }
-        SlackAPI.sendMsg = function (msg) {
+        SlackAPI.sendMsg = function (msg, targetName) {
             GlobalAjax.run(new SlackAjax({
                 url: "/slack/msg",
-                data: { msg: msg },
+                data: { msg: msg, target: targetName },
                 type: 'POST'
             })).done(function (res) {
                 console.log(res);

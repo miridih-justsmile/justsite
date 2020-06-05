@@ -1,22 +1,22 @@
 package comm.justsmile.justsite.springboot.web.message.service;
 
-import comm.justsmile.justsite.springboot.web.message.Payload;
+import comm.justsmile.justsite.springboot.web.message.domain.Payload;
 
-class SlackPayload implements Payload {
+public class SlackPayload implements Payload {
 
     private final String text;
     private final String targetUrl;
 
-    SlackPayload(final String targetUrl, final String text) {
+    public SlackPayload(final String targetUrl, final String text) {
         this.targetUrl = targetUrl;
         this.text = text;
     }
 
     public String getText() {
-        return text;
+        return this.text;
     }
 
     public String getTargetUrl() {
-        return targetUrl;
+        return this.targetUrl;
     }
 }
