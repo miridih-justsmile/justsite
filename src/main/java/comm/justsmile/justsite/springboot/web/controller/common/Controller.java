@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.controller.default_ctrl;
+package comm.justsmile.justsite.springboot.web.controller.common;
 
 interface Controller {
     /**

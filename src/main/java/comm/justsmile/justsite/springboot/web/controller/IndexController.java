@@ -1,6 +1,6 @@
 package comm.justsmile.justsite.springboot.web.controller;
 
-import comm.justsmile.justsite.springboot.web.controller.default_ctrl.DefaultController;
+import comm.justsmile.justsite.springboot.web.controller.common.DefaultController;
 import comm.justsmile.justsite.springboot.web.global.config.auth.domain.LoginUser;
 import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionLoginUser;
 import org.springframework.stereotype.Controller;

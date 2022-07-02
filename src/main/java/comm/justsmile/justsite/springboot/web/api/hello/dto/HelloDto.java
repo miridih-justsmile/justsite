@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.hello_api.dto;
+package comm.justsmile.justsite.springboot.web.api.hello.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

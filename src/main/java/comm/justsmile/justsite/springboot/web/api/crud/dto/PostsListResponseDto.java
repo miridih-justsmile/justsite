@@ -1,7 +1,7 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto;
+package comm.justsmile.justsite.springboot.web.api.crud.dto;
 
 
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.Posts;
+import comm.justsmile.justsite.springboot.web.api.crud.domain.Posts;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

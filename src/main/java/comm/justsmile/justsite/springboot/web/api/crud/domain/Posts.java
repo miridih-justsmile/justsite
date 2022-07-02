@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain;
+package comm.justsmile.justsite.springboot.web.api.crud.domain;
 
 import comm.justsmile.justsite.springboot.web.global.domain.BaseTimeEntity;
 import lombok.Builder;

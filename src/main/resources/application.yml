@@ -45,9 +45,9 @@ spring:
   profiles: local
 
   mustache:
-    prefix: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\templates\
+    prefix: file:///C:\Users\Administrator\IdeaProjects\justsite\src\main\resources\templates\
     cache: false
     suffix: .mustache
 
   resources:
-    static-locations: file:///C:\Users\wjdrn\IdeaProjects\justsite\src\main\resources\static
+    static-locations: file:///C:\Users\Administrator\IdeaProjects\justsite\src\main\resources\static

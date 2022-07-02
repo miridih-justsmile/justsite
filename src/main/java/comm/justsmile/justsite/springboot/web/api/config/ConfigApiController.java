@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.config_api;
+package comm.justsmile.justsite.springboot.web.api.config;
 
 import comm.justsmile.justsite.springboot.web.message.constant.SlackTargetConfig;
 import comm.justsmile.justsite.springboot.web.message.repository.SlackTargetRepository;

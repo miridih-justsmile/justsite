@@ -1,11 +1,11 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.service;
+package comm.justsmile.justsite.springboot.web.api.crud.service;
 
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.domain.Posts;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.repository.PostsRepository;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsListResponseDto;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsResponseDto;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsSaveRequestDto;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsUpdateRequestDto;
+import comm.justsmile.justsite.springboot.web.api.crud.domain.Posts;
+import comm.justsmile.justsite.springboot.web.api.crud.repository.PostsRepository;
+import comm.justsmile.justsite.springboot.web.api.crud.dto.PostsListResponseDto;
+import comm.justsmile.justsite.springboot.web.api.crud.dto.PostsResponseDto;
+import comm.justsmile.justsite.springboot.web.api.crud.dto.PostsSaveRequestDto;
+import comm.justsmile.justsite.springboot.web.api.crud.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

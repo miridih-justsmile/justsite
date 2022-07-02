@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.slack_api;
+package comm.justsmile.justsite.springboot.web.api.slack;
 
 import comm.justsmile.justsite.springboot.web.message.MessengerException;
 import comm.justsmile.justsite.springboot.web.message.domain.SlackTarget;

@@ -1,4 +1,4 @@
-package comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto;
+package comm.justsmile.justsite.springboot.web.api.crud.dto;
 
 import lombok.Builder;
 import lombok.Getter;

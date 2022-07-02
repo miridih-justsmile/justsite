@@ -1,10 +1,10 @@
 package comm.justsmile.justsite.springboot.web.controller;
 
-import comm.justsmile.justsite.springboot.web.controller.default_ctrl.DefaultController;
+import comm.justsmile.justsite.springboot.web.controller.common.DefaultController;
 import comm.justsmile.justsite.springboot.web.global.config.auth.domain.LoginUser;
 import comm.justsmile.justsite.springboot.web.global.config.auth.dto.SessionLoginUser;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.dto.PostsResponseDto;
-import comm.justsmile.justsite.springboot.web.rest_api.crud_api.service.PostsService;
+import comm.justsmile.justsite.springboot.web.api.crud.dto.PostsResponseDto;
+import comm.justsmile.justsite.springboot.web.api.crud.service.PostsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
